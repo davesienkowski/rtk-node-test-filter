@@ -1,5 +1,17 @@
 # rtk `node --test` filter pack
 
+> **For GSD users:** [GSD](https://github.com/opengsd/gsd-core) (and its
+> `@opengsd/gsd-core` engine) runs its entire `.cjs` test suite through
+> `node --test` — the single biggest unfiltered token sink when working on it.
+> This pack (install `--global --alias`, then use `ntest` / `rtk node --test`)
+> cuts a passing suite from dozens-to-hundreds of lines down to the summary,
+> while still surfacing full detail on a failure. It does **not** modify GSD or
+> its workflows — it's a local output filter you opt into.
+>
+> One caveat: GSD's workflow *bash-shim blocks* run many commands inside a single
+> `bash -c` call, which rtk can't see into — so this helps the `node --test` runs
+> you invoke directly (the test suite), not commands buried inside a workflow block.
+
 A tiny, standalone [rtk](https://github.com/rtk-ai/rtk) ("Rust Token Killer")
 filter that compresses the output of the **Node.js built-in test runner**
 (`node --test`) before it reaches an AI coding agent (Claude Code, Codex, Gemini
@@ -85,22 +97,6 @@ rtk verify --require-all        # runs the filter's inline tests (should pass)
 Uninstall: delete the `# >>> rtk-node-test-filter >>>` … `<<<` block from your
 global `filters.toml` (or delete the project `.rtk/`), remove the `ntest` alias
 line, and remove the hook entry from `~/.claude/settings.json`.
-
-## For GSD users
-
-[GSD](https://github.com/opengsd/gsd-core) (and its `@opengsd/gsd-core` engine)
-runs its entire `.cjs` test suite through `node --test`. Working on GSD-Core, or
-running GSD-style `node --test` suites in your own project, produces a lot of
-passing-TAP noise that an agent pays tokens to read every run. Installing this
-pack (`--global --alias`, then `ntest` / `rtk node --test`) cuts a passing suite
-from dozens-to-hundreds of lines down to the summary, while still surfacing the
-full detail on a failure. It does **not** modify GSD or its workflows — it's a
-local output filter you opt into.
-
-Note: GSD's workflow *bash-shim blocks* run many commands inside a single
-`bash -c` call, which rtk can't see into — so this helps most with the
-`node --test` runs you invoke directly (the test suite), not commands buried
-inside a workflow block.
 
 ## License
 
