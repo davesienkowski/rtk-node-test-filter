@@ -44,8 +44,8 @@ You need **Node.js** (you're filtering `node --test`, so you have it) and
 
 **Linux / macOS / WSL**
 ```bash
-git clone https://github.com/davesienkowski/rtk-node-test-filter
-cd rtk-node-test-filter
+git clone https://github.com/davesienkowski/rtk-node-test
+cd rtk-node-test
 ./install.sh            # interactive
 # or non-interactive:
 ./install.sh --install-rtk --global --alias        # recommended
@@ -55,8 +55,8 @@ cd rtk-node-test-filter
 
 **Windows (PowerShell)**
 ```powershell
-git clone https://github.com/davesienkowski/rtk-node-test-filter
-cd rtk-node-test-filter
+git clone https://github.com/davesienkowski/rtk-node-test
+cd rtk-node-test
 ./install.ps1                       # interactive
 ./install.ps1 -InstallRtk -Global -Alias
 ./install.ps1 -Project .
